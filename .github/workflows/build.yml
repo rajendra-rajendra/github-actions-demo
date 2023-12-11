@@ -2,10 +2,6 @@ name: Deploy Nginx
 
 on:
   workflow_dispatch
-  push:
-    branches:
-    - 'main'
-
 jobs:
   deploy:
     runs-on: ubuntu-latest
