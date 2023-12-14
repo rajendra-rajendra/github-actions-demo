@@ -10,7 +10,7 @@ env:
   REGION: us-central1
   GAR_LOCATION: us-central1-docker.pkg.dev/heroic-throne-404808/sveltikit
 
-job:
+jobs:
   build-push-artifact:
     runs-on: ubuntu-latest
     steps:
@@ -18,9 +18,9 @@ job:
         uses: "actions/checkout@v3"
 
       - id: "auth"
-          uses: "google-github-actions/auth@v1"
-          with:
-            credentials_json: "${{ secrets.SERVICE_ACCOUNT_KEY }}"
+        uses: "google-github-actions/auth@v1"
+        with:
+          credentials_json: "${{ secrets.SERVICE_ACCOUNT_KEY }}"
 
       - name: "Set up Cloud SDK"
         uses: "google-github-actions/setup-gcloud@v1"
@@ -30,6 +30,6 @@ job:
 
       - name: "Docker auth"
         run: |
-        gcloud auth configure-docker us-central1-docker.pkg.dev
-        docker build -t us-central1-docker.pkg.dev/$PROJECT_ID/sveltikit/sample:1.0 .
-        docker push us-central1-docker.pkg.dev/$PROJECT_ID/sveltikit/sample:1.0
+          gcloud auth configure-docker us-central1-docker.pkg.dev
+          docker build -t us-central1-docker.pkg.dev/$PROJECT_ID/sveltikit/sample:1.0 .
+          docker push us-central1-docker.pkg.dev/$PROJECT_ID/sveltikit/sample:1.0
